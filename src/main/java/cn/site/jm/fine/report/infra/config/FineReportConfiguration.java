@@ -1,13 +1,14 @@
 package cn.site.jm.fine.report.infra.config;
 
-import java.io.File;
-
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.StrUtil;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
-import org.springframework.util.StringUtils;
+
+import java.io.File;
 
 /**
  * <p>
@@ -28,25 +29,26 @@ public class FineReportConfiguration {
     /**
      * 自定义帆软webapp目录，从src/main/webapp重定向到自定义的目录下
      */
-    @SuppressWarnings("unused")
     public static class FineReportWebServerFactoryCustomizer implements WebServerFactoryCustomizer<TomcatServletWebServerFactory>, Ordered {
 
         @Override
         public void customize(TomcatServletWebServerFactory factory) {
             String docBase = System.getProperty("DOC_BASE");
-            if (StringUtils.isEmpty(docBase)) {
+            if (StrUtil.isBlank(docBase)) {
                 throw new IllegalArgumentException("DOC_BASE system property can't empty");
             }
-            File file = new File(docBase);
+
+            File file = FileUtil.file(docBase);
             if (!file.exists()) {
-                boolean mkdirsStatus = file.mkdirs();
+                FileUtil.mkdir(file);
             }
-            if (file.exists() && file.isDirectory()) {
-                String env = file.getAbsoluteFile().getPath();
+
+            if (FileUtil.exist(file) && FileUtil.isDirectory(file)) {
                 factory.setDocumentRoot(file);
             } else {
                 throw new IllegalArgumentException("Fine webapp dir [env] not found");
             }
+
             // 加载帆软Web
             factory.getTomcatContextCustomizers()
                     .add(context -> context.addApplicationListener("com.fr.startup.FineServletContextListener"));
