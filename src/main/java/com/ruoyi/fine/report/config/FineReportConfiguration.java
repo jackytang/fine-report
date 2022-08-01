@@ -1,4 +1,4 @@
-package cn.site.jm.fine.report.infra.config;
+package com.ruoyi.fine.report.config;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
