@@ -21,8 +21,9 @@
         <fr.version>11.0</fr.version>
         <hutool.version>5.8.5</hutool.version>
         <springboot.version>2.6.9</springboot.version>
+
         <!-- docker 配置 -->
-        <docker.registry.url>192.168.3.34</docker.registry.url>
+        <docker.registry.url>192.168.3.36</docker.registry.url>
         <docker.registry.host>http://${docker.registry.url}:2375</docker.registry.host>
         <docker.namespace>ruoyi</docker.namespace>
         <docker.plugin.version>1.2.2</docker.plugin.version>
