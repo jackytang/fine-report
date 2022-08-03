@@ -15,7 +15,7 @@ server:
 
 management:
   server:
-    port: 8081
+    port: 9201
   endpoints:
     web:
       exposure:
