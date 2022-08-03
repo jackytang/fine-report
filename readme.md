@@ -41,14 +41,6 @@ java -Xmx1g -Xms1g \
 -jar hdsp-fr-server.jar  > ./logs/hdsp-fr-server.log 2>&1 &
 ```
 
-```shell
-java -Xmx1g -Xms1g \
--DDOC_BASE="/Users/JackyTang/Downloads/fr10-web" \
--Dloader.path="BOOT-INF/classes/,file:/Users/JackyTang/Downloads/fr10-web/WEB-INF/classes,file:/Users/JackyTang/Downloads/fr10-web/WEB-INF/lib,BOOT-INF/lib/,/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/lib/tools.jar" \
--jar target/fine-report.jar 
-```
-
-
 **重点：**
 
 `loader.path` ：` loader.path`为spring boot loader的lib包加载目录，同时⚠️**loader.path的顺序为加载类的顺序**。指定值中
