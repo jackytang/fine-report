@@ -51,7 +51,7 @@ public class FineReportConfiguration {
 
             // 加载帆软Web
             factory.getTomcatContextCustomizers()
-                    .add(context -> context.addApplicationListener("com.fr.startup.FineServletContextListener"));
+                   .add(context -> context.addApplicationListener("com.fr.startup.FineServletContextListener"));
         }
 
         @Override
